@@ -1,409 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to Family Farms Store</title>
-  <meta name="description" content="Family Farms Store – Fresh, local, and lovingly grown produce straight from our family to yours." />
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
-
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --green-dark: #2d5016;
-      --green-mid: #4a7c2f;
-      --green-light: #7daf4a;
-      --cream: #faf6ee;
-      --warm-white: #fffdf7;
-      --brown: #6b4226;
-      --gold: #c9922a;
-      --text-dark: #1e1e1e;
-      --text-muted: #5a5a5a;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Lato', sans-serif;
-      background-color: var(--cream);
-      color: var(--text-dark);
-      overflow-x: hidden;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 60px;
-      background: rgba(250, 246, 238, 0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(74, 124, 47, 0.15);
-    }
-
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      color: var(--green-dark);
-      letter-spacing: 0.02em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--green-mid); }
-
-    .nav-cta {
-      background: var(--green-mid);
-      color: #fff !important;
-      padding: 10px 24px;
-      border-radius: 30px;
-      transition: background 0.2s !important;
-    }
-
-    .nav-cta:hover { background: var(--green-dark) !important; color: #fff !important; }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 120px 40px 80px;
-      position: relative;
-      background:
-        radial-gradient(ellipse at 20% 80%, rgba(125, 175, 74, 0.12) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(201, 146, 42, 0.10) 0%, transparent 60%),
-        var(--cream);
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1' fill='%234a7c2f' opacity='0.08'/%3E%3C/svg%3E");
-      background-size: 60px 60px;
-      pointer-events: none;
-    }
-
-    .hero-eyebrow {
-      display: inline-block;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid var(--gold);
-      padding: 6px 20px;
-      border-radius: 30px;
-      margin-bottom: 32px;
-      animation: fadeUp 0.8s ease both;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 6vw, 5.5rem);
-      font-weight: 700;
-      line-height: 1.1;
-      color: var(--green-dark);
-      max-width: 800px;
-      margin: 0 auto 28px;
-      animation: fadeUp 0.9s 0.1s ease both;
-    }
-
-    .hero h1 em {
-      font-style: italic;
-      color: var(--green-mid);
-    }
-
-    .hero p {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      max-width: 520px;
-      margin: 0 auto 48px;
-      line-height: 1.75;
-      font-weight: 300;
-      animation: fadeUp 1s 0.2s ease both;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-      animation: fadeUp 1s 0.3s ease both;
-    }
-
-    .btn-primary {
-      background: var(--green-dark);
-      color: #fff;
-      padding: 16px 38px;
-      border-radius: 50px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: background 0.2s, transform 0.15s;
-    }
-
-    .btn-primary:hover { background: var(--green-mid); transform: translateY(-2px); }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--green-dark);
-      padding: 16px 38px;
-      border-radius: 50px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-decoration: none;
-      text-transform: uppercase;
-      border: 2px solid var(--green-dark);
-      transition: background 0.2s, color 0.2s, transform 0.15s;
-    }
-
-    .btn-outline:hover { background: var(--green-dark); color: #fff; transform: translateY(-2px); }
-
-    /* Scroll arrow */
-    .scroll-hint {
-      position: absolute;
-      bottom: 36px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      color: var(--green-mid);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      animation: bounce 2s infinite;
-    }
-
-    .scroll-hint svg { opacity: 0.6; }
-
-    /* ── FEATURES ── */
-    .features {
-      padding: 100px 60px;
-      background: var(--warm-white);
-    }
-
-    .section-label {
-      text-align: center;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      text-align: center;
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      color: var(--green-dark);
-      margin-bottom: 60px;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 32px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .feature-card {
-      background: var(--cream);
-      border-radius: 20px;
-      padding: 40px 32px;
-      text-align: center;
-      border: 1px solid rgba(74, 124, 47, 0.12);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(45, 80, 22, 0.10);
-    }
-
-    .feature-icon {
-      width: 64px;
-      height: 64px;
-      border-radius: 16px;
-      background: var(--green-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 24px;
-      font-size: 28px;
-    }
-
-    .feature-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      color: var(--green-dark);
-      margin-bottom: 12px;
-    }
-
-    .feature-card p {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    /* ── BANNER STRIP ── */
-    .banner {
-      background: var(--green-dark);
-      color: #fff;
-      padding: 60px 40px;
-      text-align: center;
-    }
-
-    .banner h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      margin-bottom: 16px;
-    }
-
-    .banner p {
-      font-size: 1rem;
-      opacity: 0.78;
-      max-width: 480px;
-      margin: 0 auto 32px;
-      line-height: 1.7;
-    }
-
-    .banner .btn-primary {
-      background: var(--gold);
-      color: #fff;
-    }
-
-    .banner .btn-primary:hover { background: #a8781e; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #1a2e0d;
-      color: rgba(255,255,255,0.6);
-      text-align: center;
-      padding: 32px 40px;
-      font-size: 0.85rem;
-    }
-
-    footer strong { color: rgba(255,255,255,0.9); }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50%       { transform: translateX(-50%) translateY(8px); }
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 720px) {
-      nav { padding: 16px 24px; }
-      .nav-links { display: none; }
-      .features { padding: 70px 24px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Farms - Your One-Stop Shop</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>FAMILY<span class="logo-accent">FARMS</span></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="pages/locations.html">Locations</a></li>
+                <li><a href="pages/contact.html">Contact</a></li>
+                <li><a href="pages/careers.html">Careers</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-  <!-- NAV -->
-  <nav>
-    <span class="nav-logo">🌿 Family Farms</span>
-    <ul class="nav-links">
-      <li><a href="#features">Our Promise</a></li>
-      <li><a href="#shop">Shop</a></li>
-      <li><a href="#contact" class="nav-cta">Visit Us</a></li>
-    </ul>
-  </nav>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Family Farms</h2>
+            <p>Your one-stop shop for all your everyday needs</p>
+            <button class="cta-button">Shop Now</button>
+        </div>
+    </section>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div>
-      <span class="hero-eyebrow">Est. with love &amp; soil</span>
-      <h1>Welcome to<br /><em>Family Farms Store</em></h1>
-      <p>Fresh produce, honest prices, and a story rooted in generations of farming. From our family fields directly to your table.</p>
-      <div class="hero-buttons">
-        <a href="#shop" class="btn-primary">Shop Fresh Today</a>
-        <a href="#features" class="btn-outline">Our Story</a>
-      </div>
-    </div>
-    <div class="scroll-hint">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M10 4v12M4 10l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-  </section>
+    <!-- Products Section -->
+    <section class="products">
+        <div class="container">
+            <h2>Featured Products</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">🥕</div>
+                    <h3>Fresh Produce</h3>
+                    <p>Farm-fresh vegetables and fruits delivered daily</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🥛</div>
+                    <h3>Dairy Products</h3>
+                    <p>Fresh milk, cheese, and dairy essentials</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🍖</div>
+                    <h3>Meat & Poultry</h3>
+                    <p>Premium quality meats and poultry products</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🛒</div>
+                    <h3>Grocery Items</h3>
+                    <p>Complete range of grocery and household items</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- FEATURES -->
-  <section class="features" id="features">
-    <p class="section-label">Why Choose Us</p>
-    <h2 class="section-title">Grown With Care,<br />Sold With Pride</h2>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🌱</div>
-        <h3>100% Organic</h3>
-        <p>No pesticides, no shortcuts. Every crop is grown the natural way, just as nature intended.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🚜</div>
-        <h3>Farm Fresh Daily</h3>
-        <p>Harvested at peak freshness and delivered to your door within 24 hours of picking.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🤝</div>
-        <h3>Family Owned</h3>
-        <p>Four generations of farmers who put passion into every seed planted and every crop tended.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🌍</div>
-        <h3>Sustainably Grown</h3>
-        <p>We care for the earth as much as we care for your family — zero waste, zero compromise.</p>
-      </div>
-    </div>
-  </section>
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2>About Family Farms</h2>
+            <p>At Family Farms, we believe in providing quality products at affordable prices. With over 20 years of experience, we've served thousands of families across the region. Our commitment is to deliver the freshest products and exceptional customer service.</p>
+        </div>
+    </section>
 
-  <!-- BANNER -->
-  <section class="banner" id="shop">
-    <h2>Ready to Taste the Difference?</h2>
-    <p>Join thousands of happy families who've made Family Farms their trusted store for fresh goodness.</p>
-    <a href="#contact" class="btn-primary">Start Shopping</a>
-  </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="pages/locations.html">Locations</a></li>
+                        <li><a href="pages/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p>Phone: (555) 123-4567</p>
+                    <p>Email: info@familyfarms.com</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Family Farms. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-  <!-- FOOTER -->
-  <footer id="contact">
-    <p>&copy; 2026 <strong>Family Farms Store</strong>. All rights reserved. &nbsp;·&nbsp; Grown with ❤️ for your family.</p>
-  </footer>
-
+    <script src="js/script.js"></script>
 </body>
 </html>
